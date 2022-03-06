@@ -44,11 +44,11 @@
   + 대부분의 모델이 neutral에 치중<br>
 ![image](https://github.com/teamgaon/KLUE/blob/main/pic/9.png)
 
-'''
+```
 def voting(df):
   cols = ['neutral', 'contradiction', 'entailment']
   for col in cols:
     if df[col] > 2:
       return col
   return 'neutral'
-'''
+```
