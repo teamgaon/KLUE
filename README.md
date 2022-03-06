@@ -43,12 +43,25 @@
 ![image](https://github.com/teamgaon/KLUE/blob/main/pic/8.png)
   + 대부분의 모델이 neutral에 치중<br>
 ![image](https://github.com/teamgaon/KLUE/blob/main/pic/9.png)
-
-```
-def voting(df):
-  cols = ['neutral', 'contradiction', 'entailment']
-  for col in cols:
-    if df[col] > 2:
-      return col
-  return 'neutral'
-```
+  + 5개의 label 중 같은 label이 3개 이상이면 해당 label 획득, 아니면 neutral
+    ```
+    def voting(df):
+      cols = ['neutral', 'contradiction', 'entailment']
+      for col in cols:
+        if df[col] > 2:
+          return col
+      return 'neutral'
+    ```
+  + 가장 빈번한 label을 부여했을 때 label이 neutral에 치중 <br>
+![image](https://github.com/teamgaon/KLUE/blob/main/pic/10.png)
+  + label 별로 threshold 다르게 적용
+    ```
+      neutral: 3 / contradiction: 2 -> contradiction
+      neutral: 3 / entailment: 2 -> entailment
+      neutral: 4 / contradiction: 1 -> contradiction
+      neutral: 4 / entailment: 1 -> entailment
+    ```
+   + 결과 <br>
+![image](https://github.com/teamgaon/KLUE/blob/main/pic/11.png)
+* Soft voting
+  + 추가 
